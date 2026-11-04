@@ -10,4 +10,4 @@ passlib[bcrypt]
 redis
 httpx
 pytest
-
+email-validator

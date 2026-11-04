@@ -33,3 +33,39 @@ def get_all_movies(genre=None):
 
     return movies
 
+def add_movie(movie):
+    new_movie = {
+        "id": len(movies) + 1,
+        **movie.model_dump()
+    }
+
+    movies.append(new_movie)
+
+    return new_movie
+
+def update_movie(movie_id, movie):
+    for index, existing_movie in enumerate(movies):
+        if existing_movie["id"] == movie_id:
+            updated_movie = {
+                "id": movie_id,
+                **movie.model_dump()
+            }
+
+            movies[index] = updated_movie
+            return updated_movie
+
+    return None    
+
+def delete_movie(movie_id):
+    for index, movie in enumerate(movies):
+        if movie["id"] == movie_id:
+            return movies.pop(index)
+
+    return None
+
+def get_movie_by_id(movie_id):
+    for movie in movies:
+        if movie["id"] == movie_id:
+            return movie
+
+    return None
